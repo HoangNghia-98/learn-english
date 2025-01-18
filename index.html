@@ -20,9 +20,12 @@
           <label for="InputMonth" class="visually-hidden">Password</label>
           <input
             type="text"
+            autocomplete="off"
+            spellcheck="false"
             class="form-control"
             id="InputMonth"
             placeholder="..."
+            autofocus
           />
         </div>
         <div class="col-auto">
@@ -31,6 +34,9 @@
           </button>
         </div>
       </form>
+      <div id="totalSuccess" class="alert-success text-success" role="alert">
+        Total correct: 0
+      </div>
       <div class="alert-danger w-auto text-danger notCorretMess" role="alert">
         Not Correct
       </div>
@@ -117,11 +123,17 @@
         );
         if (totalCorretAnswer === 12) {
           totalCorretAnswer = 0;
+          document.getElementById(
+            "totalSuccess"
+          ).innerHTML = `Total correct: ${totalCorretAnswer}`;
           shuffleMonths();
           console.log("new months", data.months);
         } else {
           data.currentMonthIndex += 1;
           data.currentMonth = data.months[data.currentMonthIndex]?.eng || "";
+          document.getElementById(
+            "totalSuccess"
+          ).innerHTML = `Total correct: ${totalCorretAnswer}`;
         }
 
         updateVnMonthLabel();
